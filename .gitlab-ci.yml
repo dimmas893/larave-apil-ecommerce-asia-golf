@@ -1,0 +1,26 @@
+building:
+  stage: build
+  script:
+    - cp .env.example .env
+    - composer install
+  artifacts:
+    expire_in: 1 month
+    paths:
+      - vendor/
+      - .env
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}-composer
+    paths:
+      - vendor/
+
+deploying:
+  stage: deploy
+  only:
+      - main
+  dependencies:
+    - building
+  script:
+    - ~/.config/composer/vendor/bin/envoy run deploy --commit="$CI_COMMIT_SHA"
+  environment:
+    name: main
+    url: http://api.sixsens.id/gps/
