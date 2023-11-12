@@ -20,11 +20,6 @@ class ItemRepository
     function findProdukItemindex($perPage = 10, array $filter)
     {
         $product = $this->queryFindProdukItemindex($filter);
-        // $product->whereHasMorph('productable', ['App\Models\Item'], function ($query) use ($filter) {
-        //     $query->where('is_bestseller', 1);
-        // });
-        // dd('ds');
-
         $product->whereHasMorph('productable', ['App\Models\Item']);
         $product->with([
             'productable.itemPhoto' => function ($queryItemPhoto) {

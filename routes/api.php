@@ -175,17 +175,6 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::delete('', [ItemBundlingController::class, 'delete']);
             Route::put('', [ItemBundlingController::class, 'update']);
         });
-
-
-
-        // Route::prefix('{product}')->group(function () {
-        //     Route::get('/detail', [ItemBundlingController::class, 'detail']);
-        // });
-
-        // Route::prefix('{item}')->group(function () {
-        //     Route::get('', [ItemBundlingController::class, 'relationBundling']);
-        //     Route::get('limit', [ItemBundlingController::class, 'limitRelationBundling']);
-        // });
     });
 
     Route::prefix('item-photo')->group(function () {
